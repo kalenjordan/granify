@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Granify_Sales>
+            <version>1.0.2</version>
+            <package_version>1.0.19</package_version>
+        </Granify_Sales>
+    </modules>
+
+    <global>
+        <models>
+            <granify_sales>
+                <class>Granify_Sales_Model</class>
+                <resourceModel>granify_sales_resource</resourceModel>
+            </granify_sales>
+            <granify_sales_resource>
+                <class>Granify_Sales_Model_Resource</class>
+                <entities>
+                    <order_info>
+                        <table>granify_sales_order_info</table>
+                    </order_info>
+                </entities>
+            </granify_sales_resource>
+        </models>
+        <resources>
+            <granify_sales_setup>
+                <setup>
+                    <module>Granify_Sales</module>
+                    <class>Granify_Sales_Model_Resource_Setup</class>
+                </setup>
+            </granify_sales_setup>
+        </resources>
+        <blocks>
+            <granify_sales>
+                <class>Granify_Sales_Block</class>
+            </granify_sales>
+        </blocks>
+        <helpers>
+            <granify_sales>
+                <class>Granify_Sales_Helper</class>
+            </granify_sales>
+        </helpers>
+    </global>
+
+    <frontend>
+        <layout>
+            <updates>
+                <granify_sales module="Granify_Sales">
+                    <file>granify/sales.xml</file>
+                </granify_sales>
+            </updates>
+        </layout>
+        <secure_url>
+            <granify_api>/granify_sales/api</granify_api>
+        </secure_url>
+        <routers>
+            <granify_api>
+                <use>granify_api</use>
+                <args>
+                    <module>Granify_Sales</module>
+                </args>
+            </granify_api>
+        </routers>
+    </frontend>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <granify_sales module="Granify_Sales">
+                    <file>granify/sales.xml</file>
+                </granify_sales>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <default>
+        <web>
+            <routers> <!-- declare default routers-->
+                <granify_api>
+                    <area>frontend</area>
+                    <class>Granify_Sales_Model_Api_Router</class>
+                </granify_api>
+            </routers>
+        </web>
+
+        <granify>
+            <post_options>
+                <post_order_url>https://matching.granify.com/magento/orders/update</post_order_url>
+                <post_order_timeout>30</post_order_timeout>
+                <shop_info_uri>https://app.granify.com/api/site/info</shop_info_uri>
+            </post_options>
+            <general>
+                <default_granify_js_link>//cdn.granify.com/assets/magento.js</default_granify_js_link>
+            </general>
+            <logger>
+                <honeybadger>
+                    <api_uri>https://www.honeybadger.io/v1/notices</api_uri>
+                    <api_key>96e29342</api_key>
+                </honeybadger>
+            </logger>
+        </granify>
+    </default>
+</config>

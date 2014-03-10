@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config>
+    <placeholders>
+        <granify_cart_info>
+            <block>granify_sales/checkout_cart</block>
+            <placeholder>GRANIFY_CART_INFO</placeholder>
+            <container>Granify_Sales_Model_Cache_Container_Cart</container>
+            <cache_lifetime>0</cache_lifetime>
+        </granify_cart_info>
+    </placeholders>
+</config>

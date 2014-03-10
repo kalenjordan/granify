@@ -1,0 +1,12 @@
+<?php
+/**
+ * Notification block about empty Site ID
+ *
+ * @var $this Granify_Sales_Block_Adminhtml_Notification
+ */
+?>
+<?php if (!$this->isAble()): ?>
+<div class="notification-global notification-global-notice">
+    <?php echo $this->__('Granify Service not yet configured. Please fill the Site ID and API secret attributes with a valid value in the <a href="%s">configuration</a>.', $this->getConfigUrl())?>
+</div>
+<?php endif; ?>
