@@ -1,0 +1,6 @@
+app/etc/modules/Granify_Sales.xml                               app/etc/modules/Granify_Sales.xml
+app/code/community/Granify/Sales                                app/code/community/Granify/Sales
+app/design/frontend/base/default/layout/granify/sales.xml       app/design/frontend/base/default/layout/granify/sales.xml
+app/design/frontend/base/default/template/granify               app/design/frontend/base/default/template/granify
+app/design/adminhtml/default/default/layout/granify/sales.xml   app/design/adminhtml/default/default/layout/granify/sales.xml
+app/design/adminhtml/base/default/template/granify              app/design/adminhtml/base/default/template/granify
