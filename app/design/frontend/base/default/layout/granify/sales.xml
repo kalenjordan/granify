@@ -3,19 +3,20 @@
     <default>
         <block type="granify_sales/page_head" name="granify_sales_page_head"/>
         <block type="granify_sales/page_recognizer" name="granify_sales_page_recognizer"/>
-        <block type="granify_sales/checkout_cart" name="granify_sales_checkout_cart"
-               template="granify/checkout/cart.phtml"/>
-        <reference name="head">
+        <block type="granify_sales/checkout_cart" name="granify_sales_checkout_cart" template="granify/checkout/cart.phtml"/>
+        <block type="granify_sales/checkout_order" name="granify_sales_checkout_order" template="granify/checkout/order.phtml"/>
+        <reference name="content">
+            <action method="append" ifconfig="granify/general/site_id">
+                <name>granify_sales_page_head</name>
+            </action>
             <action method="append" ifconfig="granify/general/site_id">
                 <name>granify_sales_page_recognizer</name>
             </action>
             <action method="append" ifconfig="granify/general/site_id">
-                <name>granify_sales_page_head</name>
-            </action>
-        </reference>
-        <reference name="content">
-            <action method="append" ifconfig="granify/general/site_id">
                 <name>granify_sales_checkout_cart</name>
+            </action>
+            <action method="append" ifconfig="granify/general/site_id">
+                <name>granify_sales_checkout_order</name>
             </action>
         </reference>
     </default>

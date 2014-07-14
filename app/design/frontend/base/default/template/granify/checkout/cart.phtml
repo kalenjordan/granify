@@ -2,13 +2,13 @@
 /** @var $this Granify_Sales_Block_Checkout_Cart */
 $json = $this->getCartJson();
 ?>
-<?php if ($json) : ?>
 <script type="text/javascript">
 //<![CDATA[
-var GRANIFY_MAGE = GRANIFY_MAGE || {},
-    granifyShopCart; /* old value */
-GRANIFY_MAGE.shopCart = granifyShopCart = <?php echo $json; ?>;
-
+<?php if ($json) : ?>
+Granify.trackCart(<?php echo $json; ?>);
+<?php else : ?>
+Granify.trackCart({ items: [] });
+<?php endif; ?>
 //]]>
 </script>
-<?php endif; ?>
+

@@ -53,14 +53,6 @@ class Granify_Sales_Model_Api_Resource_Factory
                 'path' => 'granify_sales/api_resource_shopInfo_v%s',
                 'version' => '1,2',
             ),
-            'coupons'   => array(
-                'path' => 'granify_sales/api_resource_priceRule_v%s',
-                'version' => '1'
-            ),
-            'orders'   => array(
-                'path' => 'granify_sales/api_resource_order_v%s',
-                'version' => '1'
-            ),
             'stores'   => array(
                 'path' => 'granify_sales/api_resource_store_v%s',
                 'version' => '1'

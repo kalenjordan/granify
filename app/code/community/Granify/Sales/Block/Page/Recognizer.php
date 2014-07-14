@@ -23,8 +23,9 @@ class Granify_Sales_Block_Page_Recognizer extends Mage_Core_Block_Template
         $recognizer = $this->helper('granify_sales/page_recognizer');
         return sprintf(
             '<script type="text/javascript">
-                var GRANIFY_MAGE = GRANIFY_MAGE || {};
-                GRANIFY_MAGE.pageType = \'%s\';
+                Granify.trackPageView({
+                    page_type: \'%s\'
+                });
             </script>' . PHP_EOL,
             $recognizer->recognize()
         );

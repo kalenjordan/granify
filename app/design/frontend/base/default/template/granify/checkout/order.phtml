@@ -1,0 +1,11 @@
+<?php
+/** @var $this Granify_Sales_Block_Checkout_Order */
+$json = $this->getOrderJson();
+?>
+<?php if ($json) : ?>
+<script type="text/javascript">
+//<![CDATA[
+Granify.trackOrder(<?php echo $json; ?>);
+//]]>
+</script>
+<?php endif; ?>

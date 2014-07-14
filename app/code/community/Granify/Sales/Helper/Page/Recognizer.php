@@ -16,6 +16,7 @@ class Granify_Sales_Helper_Page_Recognizer extends Granify_Sales_Helper_BaseAbst
     const PAGE_COLLECTION = 'collection';
     const PAGE_PRODUCT    = 'product';
     const PAGE_CART       = 'cart';
+    const PAGE_CHECKOUT   = 'checkout';
     const PAGE_OTHER      = 'other';
     /**#@-*/
 
@@ -32,6 +33,8 @@ class Granify_Sales_Helper_Page_Recognizer extends Granify_Sales_Helper_BaseAbst
             $type = self::PAGE_PRODUCT;
         } elseif ($this->_isCartPage()) {
             $type = self::PAGE_CART;
+        } elseif ($this->_isCheckoutPage()) {
+            $type = self::PAGE_CHECKOUT;
         } else {
             $type = self::PAGE_OTHER;
         }
@@ -85,5 +88,16 @@ class Granify_Sales_Helper_Page_Recognizer extends Granify_Sales_Helper_BaseAbst
         /** @var Granify_Sales_Helper_Cart $cart */
         $cart = $this->_getHelper('granify_sales/cart');
         return $cart->isCartPage();
+    }
+
+    /**
+     * Get status of "is checkout page"
+     *
+     * @return bool
+     */
+    protected function _isCheckoutPage()
+    {
+        return $this->_getRequest()->getModuleName() == 'checkout'
+            && $this->_getRequest()->getControllerName() != 'cart';
     }
 }

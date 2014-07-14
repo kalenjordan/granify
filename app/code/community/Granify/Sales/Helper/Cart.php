@@ -13,64 +13,6 @@ class Granify_Sales_Helper_Cart extends Granify_Sales_Helper_BaseAbstract
     const CHECKOUT_CART_URI_PART = 'checkout/cart';
 
     /**
-     * Get cart token
-     *
-     * @param string|int|null $quoteId
-     * @return string
-     */
-    public function getCartToken($quoteId = null)
-    {
-        if ($quoteId) {
-            $token = $this->_generateToken($quoteId);
-        } else {
-            //generate random cart token if quote ID is not set
-            $token = $this->_getRandomToken();
-        }
-        return $token;
-    }
-
-    /**
-     * Generate random cart token
-     *
-     * @return mixed|string
-     */
-    protected function _getRandomToken()
-    {
-        /** @var $session Mage_Catalog_Model_Session */
-        $session = $this->_getSingleton('catalog/session');
-        $token   = $session->getData('granify_cart_token');
-        if (!$token) {
-            $token = $this->_generateToken($this->_getRandomString());
-            $session->setData('granify_cart_token', $token);
-        }
-        return $token;
-    }
-
-    /**
-     * Generate token by string and Site ID
-     *
-     * @param string|int $str
-     * @return string
-     */
-    protected function _generateToken($str)
-    {
-        /** @var $helper Granify_Sales_Helper_Data */
-        $helper = $this->_getHelper('granify_sales');
-        return md5($str . '-' . $helper->getSiteId());
-    }
-
-    /**
-     * Get random string (date-time+micro-time+rand-number)
-     *
-     * @return string
-     * @codeCoverageIgnore  It return random value
-     */
-    protected function _getRandomString()
-    {
-        return date('YmdHis') . microtime() . rand(0, 10000);
-    }
-
-    /**
      * Get cart info in JSON format
      *
      * @return string

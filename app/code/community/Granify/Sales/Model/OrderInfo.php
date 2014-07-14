@@ -2,6 +2,8 @@
 /**
  * Model for prepare order info data
  *
+ * Model for get order info based on invoice model
+ *
  * @category    Granify
  * @package     Granify_Sales
  *
@@ -22,14 +24,17 @@
 class Granify_Sales_Model_OrderInfo extends Mage_Core_Model_Abstract
 {
     /**
+     * Invoice model of order
+     *
      * @var Mage_Sales_Model_Order_Invoice
+     * @deprecated Deprecated since API v3
      */
     protected $_invoice;
 
     /**
      * Internal constructor for init resource model
      */
-    public function _construct()
+    protected function _construct()
     {
         $this->_init('granify_sales/orderInfo');
     }
@@ -39,6 +44,7 @@ class Granify_Sales_Model_OrderInfo extends Mage_Core_Model_Abstract
      *
      * @param Mage_Sales_Model_Order_Invoice $invoice
      * @return Granify_Sales_Model_OrderInfo
+     * @deprecated Deprecated since API v3
      */
     public function setInvoice(Mage_Sales_Model_Order_Invoice $invoice)
     {
@@ -61,6 +67,7 @@ class Granify_Sales_Model_OrderInfo extends Mage_Core_Model_Abstract
      * Get invoice
      *
      * @return Mage_Sales_Model_Order_Invoice
+     * @deprecated Deprecated since API v3
      */
     public function getInvoice()
     {
@@ -79,11 +86,11 @@ class Granify_Sales_Model_OrderInfo extends Mage_Core_Model_Abstract
     }
 
     /**
-     * Get data helper
+     * Get cart helper
      *
      * @return Granify_Sales_Helper_Cart
      */
-    public function _getHelper()
+    protected function _getHelper()
     {
         return Mage::helper('granify_sales/cart');
     }
@@ -93,6 +100,7 @@ class Granify_Sales_Model_OrderInfo extends Mage_Core_Model_Abstract
      *
      * @return Granify_Sales_Model_OrderInfo
      * @throws Exception
+     * @deprecated Deprecated since API v3
      */
     public function prepare()
     {
@@ -152,9 +160,8 @@ class Granify_Sales_Model_OrderInfo extends Mage_Core_Model_Abstract
                 continue;
             }
 
-            $data = $this->_addItemData($orderItem, $invoiceItemsByOrderItem[$orderItem->getId()]);
+            $data = $this->_getOrderItemData($orderItem, $invoiceItemsByOrderItem[$orderItem->getId()]);
             $orderData['line_items'][] = $data;
-
         }
 
         $this->setNormalData($orderData);
@@ -168,8 +175,8 @@ class Granify_Sales_Model_OrderInfo extends Mage_Core_Model_Abstract
      * @param Mage_Sales_Model_Order_Invoice_Item $invoiceItem
      * @return array
      */
-    protected function _addItemData(Mage_Sales_Model_Order_Item $orderItem,
-                                    Mage_Sales_Model_Order_Invoice_Item $invoiceItem)
+    protected function _getOrderItemData(Mage_Sales_Model_Order_Item $orderItem,
+                                         Mage_Sales_Model_Order_Invoice_Item $invoiceItem)
     {
         $children = $orderItem->getChildrenItems();
         if ($children) {

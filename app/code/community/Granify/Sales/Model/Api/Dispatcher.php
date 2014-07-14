@@ -11,7 +11,7 @@ class Granify_Sales_Model_Api_Dispatcher
     /**
      * API version
      */
-    const VERSION = 2;
+    const VERSION = 3;
 
     /**
      * Status code 200 "OK"

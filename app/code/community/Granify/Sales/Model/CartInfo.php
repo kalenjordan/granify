@@ -54,8 +54,6 @@ class Granify_Sales_Model_CartInfo extends Varien_Object
      */
     public function prepare()
     {
-        $this->_serDefaultData();
-
         $cartItems = array();
 
         /** @var $collection Mage_Sales_Model_Mysql4_Quote_Item_Collection */
@@ -68,8 +66,6 @@ class Granify_Sales_Model_CartInfo extends Varien_Object
                  */
                 continue;
             }
-
-            $this->_collectTotals($item);
 
             $cartItems[] = $this->_collectItem($item);
         }
@@ -112,36 +108,5 @@ class Granify_Sales_Model_CartInfo extends Varien_Object
             'variant_id' => $quoteProduct ? $quoteProduct->getId() : null,
         );
         return $cartItem;
-    }
-
-    /**
-     * Collect cart info totals
-     *
-     * @param Mage_Sales_Model_Quote_Item $item
-     * @return $this
-     */
-    protected function _collectTotals(Mage_Sales_Model_Quote_Item $item)
-    {
-        $this->setData('total_price', $this->getData('total_price') + $item->getData('base_price'));
-        $this->setData('item_count', $this->getData('item_count') + $item->getData('qty'));
-        return $this;
-    }
-
-    /**
-     * Set default cart info data
-     *
-     * @return $this
-     */
-    protected function _serDefaultData()
-    {
-        $this->setData('item_count', 0);
-        $this->setData('total_price', 0);
-        $this->setData(
-            'cart_token',
-            $this->_getHelper()->getCartToken(
-                $this->getCart()->getQuote()->getId()
-            )
-        );
-        return $this;
     }
 }

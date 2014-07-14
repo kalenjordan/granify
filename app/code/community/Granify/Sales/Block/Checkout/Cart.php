@@ -19,6 +19,7 @@ class Granify_Sales_Block_Checkout_Cart extends Mage_Core_Block_Template
         if (!$helperData->isAble()) {
             return '';
         }
+        
         /** @var $helperCart Granify_Sales_Helper_Cart */
         $helperCart = $this->helper('granify_sales/cart');
         return $helperCart->getCartJson();
